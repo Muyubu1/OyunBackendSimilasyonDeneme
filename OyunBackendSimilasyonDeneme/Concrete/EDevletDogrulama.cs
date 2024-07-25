@@ -10,10 +10,11 @@ namespace OyunBackendSimilasyonDeneme.Concrete
 {
     internal class EDevletDogrulama : IEDevletServisi
     {
-        public bool KimlikDogrula(string tcNo, string ad, string soyad, int dogumYili)
+        public bool KimlikDogrula(Oyuncu oyuncu)
         {
             //E devlet sistemien nasıl entegre edilir bilmiyorum basit bir örnek olsun diye böyle yazdım
-            if (tcNo == "12345678901" && ad == "Ahmet" && soyad == "Yılmaz" && dogumYili == 1985)
+            if (oyuncu.TcNo == 12345678901 && oyuncu.Ad == "Ahmet" && 
+                oyuncu.Soyad == "Yılmaz" && oyuncu.DogumYili == 1985)
             {
                 return true;
             }

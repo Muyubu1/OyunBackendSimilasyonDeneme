@@ -8,8 +8,7 @@ namespace OyunBackendSimilasyonDeneme.Entities
 {
     public class Oyuncu
     {
-        public Oyuncu() { }
-        public string TcNo { get; set; }
+        public long TcNo { get; set; }
         public string Ad { get; set; }
         public string Soyad { get; set; }
         public int DogumYili { get; set; }

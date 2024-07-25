@@ -10,9 +10,9 @@ namespace OyunBackendSimilasyonDeneme.Abstract
     internal interface IOyuncu
     {
         public void OyuncuEkle(Oyuncu oyuncu);
-        public void OyuncuGuncelle(string tcNo, Oyuncu guncelOyuncu);
-        public void OyuncuSil(string tcNo);
-        public Oyuncu OyuncuGetir(string tcNo);
+        public void OyuncuGuncelle(long tcNo,Oyuncu guncelOyuncu);
+        public void OyuncuSil(long tcNo);
+        public Oyuncu OyuncuGetir(long tcNo);
 
     }
 }

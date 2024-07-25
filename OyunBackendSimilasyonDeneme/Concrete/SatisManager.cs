@@ -23,7 +23,7 @@ namespace OyunBackendSimilasyonDeneme.Concrete
                 satisFiyati = oyun.Fiyat;
             }
         }
-        public void SatisiYapilanOyunlar(Oyun oyun,)
+        public void SatisiYapilanOyunlar(Oyun oyun)
         {
             List<Oyun> oyunlar = new List<Oyun>();
             oyunlar.Add(oyun);

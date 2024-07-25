@@ -8,27 +8,52 @@ using System.Threading.Tasks;
 
 namespace OyunBackendSimilasyonDeneme.Concrete
 {
-    public class OyuncuManager:IOyuncu
-    {
+    public class OyuncuManager : IOyuncu
+    {   
+        IEDevletServisi _eDevletDogrulama;
+        public OyuncuManager(IEDevletServisi eDevletDogrulama)
+        {
+            _eDevletDogrulama = eDevletDogrulama;
+        }
+
         private List<Oyuncu> oyuncular = new List<Oyuncu>();
 
         public void OyuncuEkle(Oyuncu oyuncu)
         {
-            oyuncular.Add(oyuncu);
+            if (_eDevletDogrulama.KimlikDogrula(oyuncu) == true)
+            {
+                oyuncular.Add(oyuncu);
+                Console.WriteLine("Oyuncu Eklendi");
+
+
+            }
+            else
+            {
+                Console.WriteLine("Doğrulama başarısız");
+            }
         }
 
-        public void OyuncuGuncelle(string tcNo, Oyuncu guncelOyuncu)
+
+
+        public void OyuncuGuncelle(long tcNo, Oyuncu guncelOyuncu)
         {
             var oyuncu = oyuncular.FirstOrDefault(o => o.TcNo == tcNo);
             if (oyuncu != null)
             {
-                oyuncu.Ad = guncelOyuncu.Ad;
-                oyuncu.Soyad = guncelOyuncu.Soyad;
-                oyuncu.DogumYili = guncelOyuncu.DogumYili;
+
+                if (_eDevletDogrulama.KimlikDogrula(oyuncu) == true)
+                {
+                    oyuncu.Ad = guncelOyuncu.Ad;
+                    oyuncu.Soyad = guncelOyuncu.Soyad;
+                    oyuncu.DogumYili = guncelOyuncu.DogumYili;
+                }else
+                {
+                    Console.WriteLine("Doğrulama başarısız Güncellenecek Oyuncu Kayıtsız..");
+                }
             }
         }
 
-        public void OyuncuSil(string tcNo)
+        public void OyuncuSil(long tcNo)
         {
             var oyuncu = oyuncular.FirstOrDefault(o => o.TcNo == tcNo);
             if (oyuncu != null)
@@ -37,7 +62,7 @@ namespace OyunBackendSimilasyonDeneme.Concrete
             }
         }
 
-        public Oyuncu OyuncuGetir(string tcNo)
+        public Oyuncu OyuncuGetir(long tcNo)
         {
             return oyuncular.FirstOrDefault(o => o.TcNo == tcNo);
         }
